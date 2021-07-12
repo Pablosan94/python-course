@@ -67,8 +67,19 @@ def list_from_tuples(sorted_tuples, index):
   # Return the list of lists.
   return lists
 
+def get_split_value(tuple_list, first_split_index):
+  repetition_list = [x[0] for x in tuple_list]
+  amount_list = [x[1] for x in tuple_list]
+
+  first_split_repetition_index = repetition_list.index(first_split_index)
+  amount_sublist = amount_list[:first_split_repetition_index]
+  maximum_amount_index = amount_list.index(max(amount_sublist))
+
+  return repetition_list[maximum_amount_index] + 10
+
 # EXAMPLE OF EXECUTION ORDER
-# tuples = preprocess('data.txt')
+tuples = preprocess('data.txt')
 # index = split_at_index(tuples, 35)
 # lower_list = list_from_tuples(tuples, index)[0]
 # upper_list = list_from_tuples(tuples, index)[1]
+print(get_split_value(tuples, 35))
